@@ -39,7 +39,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
   config.include Warden::Test::Helpers
-  # config.include FeatureHelpers
+  config.include FeatureHelpers
 
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
