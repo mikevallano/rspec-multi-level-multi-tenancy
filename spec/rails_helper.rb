@@ -6,7 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require "shoulda/matchers"
 require 'spec_helper'
-require 'support/controller_helpers'
+# require 'support/controller_helpers'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -36,12 +36,6 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
-  config.include ControllerHelpers, type: :controller
-    Warden.test_mode!
-
-  config.after do
-    Warden.test_reset!
-  end
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
   config.include Warden::Test::Helpers
