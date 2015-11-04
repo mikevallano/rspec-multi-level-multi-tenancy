@@ -23,7 +23,7 @@ module FeatureHelpers
     click_link 'Accounts'
     click_link 'New Account'
     fill_in 'Name', with: 'zorro'
-    fill_in 'Subdomain', with: 'looming'
+    fill_in 'Subdomain', with: 'tester'
     click_button "Create Account"
   end
 end

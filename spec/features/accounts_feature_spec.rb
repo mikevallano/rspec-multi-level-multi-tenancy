@@ -21,14 +21,14 @@ feature "CRUD methods for accounts" do
 
     click_link "Accounts"
     click_link "New Account"
-    fill_in 'Name', with: 'Looming account'
-    fill_in 'Subdomain', with: 'looming'
+    fill_in 'Name', with: 'tester account'
+    fill_in 'Subdomain', with: 'tester'
     click_button 'Create Account'
 
-    expect(page).to have_content("Looming account")
+    expect(page).to have_content("tester account")
 
     click_link "Edit"
-    fill_in 'Name', with: 'Updated looming account'
+    fill_in 'Name', with: 'Updated testing account'
     click_button "Update Account"
 
     expect(page).to have_content("successfully updated")

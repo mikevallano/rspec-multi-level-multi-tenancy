@@ -12,5 +12,13 @@ RSpec.describe Account, type: :model do
     it { is_expected.not_to validate_presence_of(:name) }
 
     it { is_expected.to validate_presence_of(:subdomain) }
+
+    it { is_expected.to belong_to(:user) }
   end #valid account context
+
+  context "with an invalid account" do
+    it "has an invalid factory" do
+      expect(invalid_account).to be_invalid
+    end
+  end #invalid account context
 end
