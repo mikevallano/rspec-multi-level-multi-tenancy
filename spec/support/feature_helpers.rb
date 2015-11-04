@@ -1,17 +1,20 @@
 module FeatureHelpers
-  def sign_up_with(email, password)
+  def sign_up_with(email, password, subdomain)
     visit root_path
 
     click_link 'Sign Up'
 
+    fill_in "Subdomain", with: subdomain
     fill_in "Email", with: email
     fill_in "Password", with: password
     fill_in "Password confirmation", with: password
     click_link_or_button 'Sign up'
+    @subdomain = subdomain
   end
 
   def sign_in_user
     user = FactoryGirl.create(:user)
+    @subdomain = user.account.subdomain
     visit root_path
     click_link 'Sign In'
     fill_in 'Email', with: user.email
@@ -19,11 +22,4 @@ module FeatureHelpers
     click_button 'Log in'
   end
 
-  def create_account
-    click_link 'Accounts'
-    click_link 'New Account'
-    fill_in 'Name', with: 'zorro'
-    fill_in 'Subdomain', with: 'tester'
-    click_button "Create Account"
-  end
 end

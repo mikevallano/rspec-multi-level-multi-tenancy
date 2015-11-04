@@ -6,7 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require "shoulda/matchers"
 require 'spec_helper'
-# require 'support/controller_helpers'
+require 'support/subdomain_helpers'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -40,6 +40,13 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include Warden::Test::Helpers
   config.include FeatureHelpers
+  # config.include SubdomainHelpers
+  # switch_to_no_subdomain
+
+
+  Capybara.configure do |config|
+    config.always_include_port = true
+  end
 
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
