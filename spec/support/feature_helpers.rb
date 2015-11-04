@@ -10,6 +10,7 @@ module FeatureHelpers
     fill_in "Password confirmation", with: password
     click_link_or_button 'Sign up'
     @subdomain = subdomain
+    @email = email
   end
 
   def sign_in_user
