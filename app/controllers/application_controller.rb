@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def current_account
     @account = Account.find_by_subdomain(request.subdomain)
-    puts "current account: #{@account.subdomain}" if @account.present?
+    # puts "current account: #{@account.subdomain}" if @account.present?
   end
   helper_method :current_account
 
@@ -27,14 +27,8 @@ class ApplicationController < ActionController::Base
       @project = params[:project_id]
       @current_project = Project.find(@project) if @project.present?
     elsif params[:controller] == "projects"
-      binding.pry
       @project = params[:id]
       @current_project = Project.find(@project) if @project.present?
-    end
-    if @current_project.present?
-      puts "current project: #{@current_project.name}"
-    else
-      puts "no current project"
     end
   end
   helper_method :current_project

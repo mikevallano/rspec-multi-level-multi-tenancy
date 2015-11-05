@@ -6,7 +6,6 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-    binding.pry
   end
 
   # GET /projects/1
@@ -27,7 +26,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-    @project.account_id = @account.id
+    @project.account_id = current_account.id
 
     respond_to do |format|
       if @project.save
