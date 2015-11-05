@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def current_account
     @account = Account.find_by(subdomain: request.subdomain)
-    puts "current account: #{@account.subdomain}"
+    puts "current account: #{@account.subdomain}" if @account.present?
   end
   helper_method :current_account
 

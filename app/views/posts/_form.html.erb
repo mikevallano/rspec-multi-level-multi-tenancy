@@ -19,6 +19,7 @@
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </div>
+  <input type="hidden" name="post[project_id]" id="project_id" value="<%= @current_project.id %>" />
   <div class="actions">
     <%= f.submit %>
   </div>

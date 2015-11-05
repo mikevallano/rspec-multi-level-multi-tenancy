@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    binding.pry
   end
 
   # GET /projects/1
