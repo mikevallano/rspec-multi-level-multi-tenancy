@@ -37,9 +37,7 @@ RSpec.describe ProjectsController, type: :controller do
 
     describe "GET #index", taco: true do #taco is a tag, which can be run with rspec --tag taco
       it "assigns all projects as @projects" do
-        Account.current_id = account.id
         get :index
-        # Account.current_id = account.id
         expect(assigns(:projects)).to eq([project])
       end
 
