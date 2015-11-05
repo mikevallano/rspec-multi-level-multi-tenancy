@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :current_account
   around_action :scope_current_account
   before_action :current_project
   around_action :scope_current_project
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
 
   def configure_permitted_parameters
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_account
-    @account = Account.find_by(subdomain: request.subdomain)
+    @account = Account.find_by_subdomain(request.subdomain)
     puts "current account: #{@account.subdomain}" if @account.present?
   end
   helper_method :current_account
@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
       @project = params[:project_id]
       @current_project = Project.find(@project) if @project.present?
     elsif params[:controller] == "projects"
+      binding.pry
       @project = params[:id]
       @current_project = Project.find(@project) if @project.present?
     end
