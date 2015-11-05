@@ -37,7 +37,9 @@ RSpec.describe ProjectsController, type: :controller do
 
     describe "GET #index", taco: true do #taco is a tag, which can be run with rspec --tag taco
       it "assigns all projects as @projects" do
+        Account.current_id = account.id
         get :index
+        # Account.current_id = account.id
         expect(assigns(:projects)).to eq([project])
       end
 
@@ -88,7 +90,7 @@ RSpec.describe ProjectsController, type: :controller do
         it "creates a new Project" do
           expect {
             post :create, {:project => valid_attributes}
-          }.to change(Project, :count).by(1)
+          }.to change(Project.unscoped.where(account_id: account.id), :count).by(1)
         end
 
         it "assigns a newly created project as @project" do
@@ -99,7 +101,7 @@ RSpec.describe ProjectsController, type: :controller do
 
         it "redirects to the created project" do
           post :create, {:project => valid_attributes}
-          expect(response).to redirect_to(Project.last)
+          expect(response).to redirect_to(Project.unscoped.where(account_id: account.id).last)
         end
       end
 
@@ -239,8 +241,10 @@ RSpec.describe ProjectsController, type: :controller do
 
   end #invalid user shared examples
 
-  describe "user access" do
+  describe "user access within account" do
     before :each do
+      account
+      Account.current_id = account.id
       current_user
       # login_with(user)
       project
