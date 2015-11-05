@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     root 'pages#account_home', as: :subdomain_root
     get 'welcome', to: 'pages#welcome', as: :welcome
 
-    resources :projects
+    resources :projects do
+      resources :posts
+    end
 
   end
 

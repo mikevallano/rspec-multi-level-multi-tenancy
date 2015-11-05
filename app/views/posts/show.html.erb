@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Current Project is: <%= @current_project.name %></h2>
+
+<p>
+  <strong>Name:</strong>
+  <%= @post.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @post.description %>
+
+  <p><%= link_to 'Edit', edit_project_post_path(@current_project, @post) %></p>
+  <p><%= link_to 'Back', project_posts_path %></p>
+  <p><%= link_to 'Destroy', project_post_path(@current_project, @post), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+</p>
+
