@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :current_account
   around_action :scope_current_account
+  before_action :can_access_account?
   before_action :current_project
   around_action :scope_current_project
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -38,6 +39,15 @@ class ApplicationController < ActionController::Base
       yield
     ensure
     Account.current_id = nil
+  end
+
+  def can_access_account?
+    if current_user.present?
+      @permitted_account = current_user.account #identify a place to redirect user to
+      unless current_user.account == current_account
+        redirect_to subdomain_root_url(:subdomain => @permitted_account.subdomain), notice: 'You are not part of that account.'
+      end
+    end
   end
 
   def scope_current_project
