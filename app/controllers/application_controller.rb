@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
 
   def current_account
     @account = Account.find_by_subdomain(request.subdomain)
-    # puts "current account: #{@account.subdomain}" if @account.present?
   end
   helper_method :current_account
 
@@ -42,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def can_access_account?
-    if current_user.present?
+    if current_user.present? && current_account.present?
       @permitted_account = current_user.account #identify a place to redirect user to
       unless current_user.account == current_account
         redirect_to subdomain_root_url(:subdomain => @permitted_account.subdomain), notice: 'You are not part of that account.'
