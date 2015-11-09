@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   def can_access_account?
     if current_user.present? && current_account.present?
       @permitted_account = current_user.account #identify a place to redirect user to
-      unless current_user.account == current_account
+      unless current_user.account == current_account || current_user.accessible_accounts.include?(current_account)
         redirect_to subdomain_root_url(:subdomain => @permitted_account.subdomain), notice: 'You are not part of that account.'
       end
     end

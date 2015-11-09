@@ -9,6 +9,11 @@ class User < ActiveRecord::Base
   has_one :account
   accepts_nested_attributes_for :account
 
+  has_many :memberships
+  has_many :accessible_accounts, :through => :memberships,
+    :source => :account,
+    :foreign_key => 'account_id'
+
 
 
   def set_account
