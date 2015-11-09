@@ -3,3 +3,6 @@
 <h2>This is your main account.</h2>
 
 <p>You are signed in as <%= "#{current_user.email}" %>
+
+Visit your <%= link_to "account Home Page",
+  subdomain_root_url(:subdomain => current_user.account.subdomain) %>.

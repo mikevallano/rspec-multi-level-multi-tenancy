@@ -1,5 +1,27 @@
 <h1>This is your account homepage</h1>
 
+<% if current_user.present? && current_user.accessible_accounts.present? %>
+
+<h2>Accounts</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Here are the accounts you can manage</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% current_user.accessible_accounts.each do |account| %>
+        <tr>
+          <td><%= account.subdomain %></td>
+          <td><%= link_to 'Show', "http://#{account.subdomain}.lvh.me:3000/" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+
 
 <p><%= link_to "Projects for this account", projects_path %></p>
 <p><%= link_to "Add a new Project", new_project_path %></p>
