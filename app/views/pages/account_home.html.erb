@@ -1,4 +1,6 @@
-<h1>This is your account homepage</h1>
+<h1>This is your main account homepage</h1>
+
+<p>If you're an admin you can <%= link_to "Invite a New Admin Member to this Account", new_memberinvite_path %></p>
 
 <% if current_user.present? && current_user.accessible_accounts.present? %>
 
