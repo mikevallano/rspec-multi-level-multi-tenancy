@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @memberinvite.email %>
+</p>
+
+<p>
+  <strong>Receiver:</strong>
+  <%= @memberinvite.receiver_id %>
+</p>
+
+<p>
+  <strong>Sender:</strong>
+  <%= @memberinvite.sender_id %>
+</p>
+
+<p>
+  <strong>Member token:</strong>
+  <%= @memberinvite.memberinvite_token %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @memberinvite.account %>
+</p>
+
+<%= link_to 'Edit', edit_memberinvite_path(@memberinvite) %> |
+<%= link_to 'Back', memberinvites_path %>

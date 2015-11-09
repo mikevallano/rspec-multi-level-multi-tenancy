@@ -1,0 +1,23 @@
+<%= form_for(@memberinvite) do |f| %>
+  <% if @memberinvite.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@memberinvite.errors.count, "error") %> prohibited this memberinvite from being saved:</h2>
+
+      <ul>
+      <% @memberinvite.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <%= f.hidden_field :sender_id, :value => current_user.id %>
+  <%= f.hidden_field :account_id, :value => current_user.account.id %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

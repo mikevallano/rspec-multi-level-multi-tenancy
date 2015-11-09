@@ -14,6 +14,7 @@ end
 
 Rails.application.routes.draw do
 
+  resources :memberinvites
   resources :memberships
   devise_for :users, :controllers => {:registrations => "registrations"}
 

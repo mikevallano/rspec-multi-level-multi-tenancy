@@ -3,12 +3,16 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+  <% if @memberinvite_token.present? %>
+    <%= hidden_field_tag :memberinvite_token, @memberinvite_token %>
+  <% else %>
   <%= f.fields_for :account do |a| %>
     <div class="field">
       <%= a.label :subdomain, "Subdomain" %><br />
       <%= a.text_field :subdomain, autofocus: true %>
     </div>
     <% end %>
+  <% end %>
 
   <div class="field">
     <%= f.label :email %><br />

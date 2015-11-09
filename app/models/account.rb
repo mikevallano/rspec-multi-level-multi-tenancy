@@ -9,6 +9,7 @@ class Account < ActiveRecord::Base
   has_many :associated_users, :through => :memberships,
     :source => :user,
     :foreign_key => 'user_id'
+  has_many :memberinvites
 
   def self.current_id=(id)
     Thread.current[:account_id] = id

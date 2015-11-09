@@ -15,8 +15,11 @@ class User < ActiveRecord::Base
     :foreign_key => 'account_id'
 
 
+  has_many :received_memberinvites, :class_name => "Memberinvite", :foreign_key => 'receiver_id'
+  has_many :sent_memberinvites, :class_name => "Memberinvite", :foreign_key => 'sender_id'
 
   def set_account
     build_account unless account.present?
   end
-end
+
+end #final ender
