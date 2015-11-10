@@ -11,6 +11,12 @@ RSpec.describe Memberinvite, type: :model do
     it "has a valid factory" do
       expect(memberinvite).to be_valid
     end
+
+    it "generates a unique token" do
+      token = memberinvite.generate_memberinvite_token
+      newtoken = memberinvite.generate_memberinvite_token
+      expect(newtoken).to_not eq(token)
+    end
   end #valid factory context
 
   context "with an invalid factory" do

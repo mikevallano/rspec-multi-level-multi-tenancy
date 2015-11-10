@@ -1,4 +1,5 @@
 class MemberinvitesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_memberinvite, only: [:show, :edit, :update, :destroy]
 
   # GET /memberinvites

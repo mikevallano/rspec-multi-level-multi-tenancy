@@ -27,12 +27,15 @@ class RegistrationsController < Devise::RegistrationsController
       if !already_user?
         resource.account = Account.new(name: resource.email.split('@')[0], subdomain: resource.email.split('@')[0])
       end
-    end
 
     resource.save
     resource.memberships << Membership.new(user_id: resource.id, account_id: @member_invite.account_id)
     @member_invite.receiver_id = resource.id
     @member_invite.save
+    end
+
+    resource.save
+
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?

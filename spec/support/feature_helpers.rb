@@ -21,6 +21,7 @@ module FeatureHelpers
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Log in'
+    @current_user = user
   end
 
 end
