@@ -42,6 +42,8 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
   config.include FeatureHelpers
   config.include MailerHelpers
+  config.before(:each) { reset_mailer }
+
   # config.include SubdomainHelpers
   # switch_to_no_subdomain
 

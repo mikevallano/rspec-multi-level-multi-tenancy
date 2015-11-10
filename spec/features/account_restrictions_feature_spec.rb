@@ -8,7 +8,7 @@ feature "User can not access other users' accounts" do
 
     url = URI.parse(current_url)
 
-    expect("#{url}").to eq("http://#{@subdomain}.lvh.me/")
+    expect("#{url}").to eq("http://#{@subdomain}.lvh.me:3000/")
 
     expect(page).to have_content("Signed in as: #{@email}")
 
@@ -16,7 +16,7 @@ feature "User can not access other users' accounts" do
 
     visit("http://notmine.lvh.me/welcome")
     expect(page).to have_content("You are not part of that account")
-    expect("#{url}").to eq("http://#{@subdomain}.lvh.me/")
+    expect("#{url}").to eq("http://#{@subdomain}.lvh.me:3000/")
 
   end
 

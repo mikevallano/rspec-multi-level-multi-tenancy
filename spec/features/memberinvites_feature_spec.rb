@@ -3,10 +3,6 @@ require 'rails_helper'
 feature "User can sign up/in and invite a user to manage their account" do
   let(:receiver_email) { Faker::Internet.email }
 
-  before(:each) do
-    reset_mailer
-  end
-
   scenario "existing user can sign in and send a memberinvite" do
     switch_to_no_subdomain
     sign_in_user
@@ -27,8 +23,7 @@ feature "User can sign up/in and invite a user to manage their account" do
     expect(last_email).to have_content("To: #{receiver_email}")
     expect(last_email.to).to eq([receiver_email])
     expect(last_email.from).to eq([@current_user.email])
-    expect(last_email.body.encoded).to include
-      new_user_registration_url(:memberinvite_token =>
+    expect(last_email.body.encoded).to include new_user_registration_path(:memberinvite_token =>
         Memberinvite.unscoped.where(account_id: @account_id).last.memberinvite_token)
 
     click_link "Sign Out"

@@ -8,7 +8,7 @@ feature "User can sign up/in and add projects to their account" do
 
     url = URI.parse(current_url)
 
-    expect("#{url}").to eq("http://#{@subdomain}.lvh.me/")
+    expect("#{url}").to eq("http://#{@subdomain}.lvh.me:3000/")
 
     expect(page).to have_content("Signed in as: #{@email}")
 
@@ -28,7 +28,7 @@ feature "User can sign up/in and add projects to their account" do
 
     url = URI.parse(current_url)
 
-    expect("#{url}").to eq("http://#{@subdomain}.lvh.me/welcome")
+    expect("#{url}").to eq("http://#{@subdomain}.lvh.me:3000/welcome")
 
     @account_id = Account.find_by_subdomain(@subdomain).id
 

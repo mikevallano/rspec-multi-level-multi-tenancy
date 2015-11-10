@@ -8,7 +8,7 @@ feature "Can sign up a new user and account" do
 
     url = URI.parse(current_url)
 
-    expect("#{url}").to eq("http://#{@subdomain}.lvh.me/")
+    expect("#{url}").to eq("http://#{@subdomain}.lvh.me:3000/")
 
     expect(page).to have_content("Signed in as: #{@email}")
 
@@ -20,7 +20,7 @@ feature "Can sign up a new user and account" do
 
     url = URI.parse(current_url)
 
-    expect("#{url}").to eq("http://#{@subdomain}.lvh.me/welcome")
+    expect("#{url}").to eq("http://#{@subdomain}.lvh.me:3000/welcome")
   end
 
 end
