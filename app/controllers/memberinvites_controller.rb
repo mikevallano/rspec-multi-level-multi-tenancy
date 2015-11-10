@@ -30,8 +30,8 @@ class MemberinvitesController < ApplicationController
 
     respond_to do |format|
       if @memberinvite.save
-        MemberinviteMailer.new_memberinvite(@memberinvite,
-        new_user_registration_url(:memberinvite_token => @memberinvite.memberinvite_token)).deliver_now
+
+        MemberinviteMailer.new_memberinvite(@memberinvite).deliver_now
 
         format.html { redirect_to @memberinvite, notice: 'Memberinvite was successfully created.' }
         format.json { render :show, status: :created, location: @memberinvite }
