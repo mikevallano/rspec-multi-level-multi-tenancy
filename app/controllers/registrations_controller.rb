@@ -25,7 +25,8 @@ class RegistrationsController < Devise::RegistrationsController
       @member_invite = Memberinvite.find_by_memberinvite_token(@memberinvite_token)
       resource.email = @member_invite.email
       if !already_user?
-        resource.account = Account.new(name: resource.email.split('@')[0], subdomain: resource.email.split('@')[0])
+        resource.account = Account.new(name: resource.email.split('@')[0],
+          subdomain: resource.email.split('@')[0].gsub('_', ''))
       end
 
     resource.save

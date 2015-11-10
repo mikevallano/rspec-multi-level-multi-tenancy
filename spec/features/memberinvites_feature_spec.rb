@@ -39,7 +39,6 @@ feature "User can sign up/in and invite a user to manage their account" do
 
     click_link "Account Home Page"
     expect(page).to (have_content("#{@current_user.account.subdomain}"))
-    save_and_open_page
 
   end
 
