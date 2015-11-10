@@ -1,6 +1,7 @@
 def switch_to_subdomain(subdomain)
   # lvh.me always resolves to 127.0.0.1
-  hostname = subdomain ? "#{subdomain}.lvh.me" : "lvh.me"
+  # hostname = subdomain ? "#{subdomain}.lvh.me" : "lvh.me"
+  hostname = subdomain ? "#{subdomain}.lvh.me:3000" : "lvh.me:3000"
   Capybara.app_host = "http://#{hostname}"
 end
 
