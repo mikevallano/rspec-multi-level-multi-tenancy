@@ -14,7 +14,7 @@ feature "User can not access other users' accounts" do
 
     account2 = FactoryGirl.create(:account, subdomain: "notmine")
 
-    visit("http://notmine.lvh.me/welcome")
+    visit("http://#{account2.subdomain}.lvh.me/welcome")
     expect(page).to have_content("You are not part of that account")
     expect("#{url}").to eq("http://#{@subdomain}.lvh.me:3000/")
 
